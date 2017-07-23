@@ -12,8 +12,9 @@ module.exports =
 class GulpControlView extends View
   @content: ->
     @div class: 'gulp-control', =>
-      @ul class: 'tasks', outlet: 'taskList'
+      @div class: 'tasks', outlet: 'taskList'
       @div class: 'output', outlet: 'outputPane'
+      @aside class: 'clear', 'Clear'
 
   serialize: ->
 
@@ -25,7 +26,7 @@ class GulpControlView extends View
       @writeOutput 'No project path found, aborting', 'error'
       return
 
-    @click '.tasks li.task', (event) =>
+    @on 'click', '.tasks li.task', (event) =>
       target = $(event.target)
       task = target.text()
       if target.hasClass('running') && @process
@@ -36,6 +37,9 @@ class GulpControlView extends View
       else
         for t in @tasks when t is task
           return @runGulp(task)
+
+    @on 'click', '.clear', =>
+      @outputPane.empty()
 
     @getGulpTasks()
     return
@@ -50,7 +54,7 @@ class GulpControlView extends View
     return
 
   getTitle: ->
-    return 'gulp.js:control'
+    return 'GULP Control'
 
   getGulpCwd: (cwd) ->
     dirs = []
@@ -82,7 +86,7 @@ class GulpControlView extends View
 
     projpath = atom.project.getPaths()[0]
     unless @gulpCwd = @getGulpCwd(projpath)
-      @writeOutput "Unable to find #{projpath}/**/gulpfile.[js|coffee]", 'error'
+      @writeOutput "gulpfile is missing", 'error'
       return
 
     @writeOutput "Using #{@gulpCwd}/#{@gulpFile}"
@@ -122,10 +126,6 @@ class GulpControlView extends View
         command = localGulpPath
 
     args = [task, '--color']
-
-    process.env.PATH = switch process.platform
-      when 'win32' then process.env.PATH
-      else "#{process.env.PATH}:" + atom.config.get('gulp-control.nodePath')
 
     options =
       cwd: @gulpCwd

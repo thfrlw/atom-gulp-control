@@ -1,25 +1,41 @@
-// The ui-variables file is provided by base themes provided by Atom.
-//
-// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
-// for a full listing of what's available.
 @import "ui-variables";
 
 .gulp-control {
   color: @text-color;
+  display: flex;
+  flex-direction: column;
+  font: @font-family;
 
-  .tasks {
-    float: left;
-    height: 100%;
-    width: 25%;
-    background: @tab-background-color;
-    border-right: 1px solid @base-border-color;
+  & > .tasks,
+  & > .output {
+    width: 100%;
     padding: 10px;
-    overflow-y: scroll;
+    overflow: hidden;
+    background: @tab-background-color;
+  }
+
+  & > .tasks {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex: 0 0 50px;
+    width: 25%;
+    border-bottom: 1px solid @base-border-color;
+    overflow-x: auto;
+
 
     .task {
       cursor: pointer;
       padding: 5px;
       border-radius: 4px;
+      list-style: none;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: rgba(0,0,0,.1);
+
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
 
       &.active {
         background: @button-background-color;
@@ -36,22 +52,40 @@
     }
   }
 
-  .output {
-    float: left;
-    height: 100%;
-    width: 75%;
-    background: @tool-panel-background-color;
-    padding: 10px;
-    overflow-y: scroll;
+  & > .output {
+    overflow-y: auto;
+    margin-bottom: 10px;
 
     pre {
       padding: 0;
+      margin: 0;
+      border: 0;
       font-size: 11px;
       background: @tool-panel-background-color;
+      white-space: initial;
+      word-break: initial;
+      word-wrap: initial;
 
       &.error {
         color: @text-color-error;
       }
+    }
+  }+
+  .clear {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid @text-color;
+    border-radius: 5px;
+    z-index: 1000;
+    padding: 10px;
+
+    &:hover {
+      background-color: @text-color-highlight;
+      border: 1px solid @text-color-highlight;
+      color: @tool-panel-background-color;
+      cursor: pointer;
     }
   }
 }

@@ -1,15 +1,12 @@
 {
   "name": "gulp-control",
   "main": "./lib/gulp-control",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Displays a list of gulp tasks and allows execution within Atom",
-  "activationCommands": {
-    "atom-workspace": "gulp-control:toggle"
-  },
   "repository": "https://github.com/jacogr/atom-gulp-control",
   "license": "MIT",
   "engines": {
-    "atom": ">=0.174.0 <2.0.0"
+    "atom": ">=1.1.1 <2.0.0"
   },
   "dependencies": {
     "ansi-to-html": "^0.3.0",

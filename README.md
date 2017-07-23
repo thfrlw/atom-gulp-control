@@ -1,3 +1,16 @@
+### 5.0.1
+
+Implemented PR's:
+- fixes error with node path by switching to atom's BufferedNodeProcess by [acburdine](https://github.com/acburdine)
+- fixed some styles things by [acburdine](https://github.com/acburdine)
+- Issue #45: Tiny fix for pane selection by [wandrewkeech](https://github.com/wandrewkeech)
+
+My changes:
+- removed menus
+- removed start command
+- tasks tiles horizontally
+- pane is plist vertically
+
 # Atom gulp-control
 
 ## What
