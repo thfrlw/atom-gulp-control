@@ -43,7 +43,6 @@
     text-align: center;
     text-transform: uppercase;
     background-color: rgba(0,0,0,.1);
-    animation: popIn 300ms;
 
     &:hover {
       color: @text-color-highlight;
@@ -51,6 +50,10 @@
   }
 
   & > .tasks > .task {
+    opacity: 0;
+    animation: popIn 300ms;
+    animation-fill-mode: forwards;
+
     &:nth-child(1) {
       animation-delay: 50ms;
     }
