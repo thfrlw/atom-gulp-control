@@ -22,6 +22,12 @@
     border-bottom: 1px solid @base-border-color;
     overflow-x: auto;
 
+    &:empty,
+    &:empty ~ .clear {
+      display: none;
+    }
+  }
+
 
   & > .tasks > .task {
       cursor: pointer;
