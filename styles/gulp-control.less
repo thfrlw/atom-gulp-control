@@ -23,7 +23,7 @@
     overflow-x: auto;
 
 
-    .task {
+  & > .tasks > .task {
       cursor: pointer;
       padding: 5px;
       border-radius: 4px;
@@ -69,8 +69,9 @@
         color: @text-color-error;
       }
     }
-  .clear {
   }
+
+  & > .clear {
     position: absolute;
     top: 10px;
     right: 10px;
