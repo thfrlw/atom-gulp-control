@@ -50,7 +50,7 @@ class GulpControlView extends View
     return
 
   getTitle: ->
-    return 'GULP Control'
+    return 'GulpControl'
 
   getGulpCwd: (cwd) ->
     dirs = []
