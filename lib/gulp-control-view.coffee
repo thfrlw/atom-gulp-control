@@ -19,8 +19,6 @@ class GulpControlView extends View
   serialize: ->
 
   initialize: ->
-    console.log 'GulpControlView: initialize'
-
     projpaths = atom.project.getPaths()
     if !projpaths or !projpaths.length or !projpaths[0]
       @writeOutput 'No project path found, aborting', 'error'
@@ -45,8 +43,6 @@ class GulpControlView extends View
     return
 
   destroy: ->
-    console.log 'GulpControlView: destroy'
-
     if @process
       @process.kill()
       @process = null
