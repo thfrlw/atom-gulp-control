@@ -24,7 +24,7 @@ class GulpControlView extends View
       @writeOutput 'No project path found, aborting', 'error'
       return
 
-    @on 'click', '.tasks li.task', (event) =>
+    @on 'click', '.tasks > .task', (event) =>
       target = $(event.target)
       task = target.text()
       if target.hasClass('running') && @process
@@ -99,7 +99,7 @@ class GulpControlView extends View
       if code is 0
         for task in @tasks.sort()
           tid = @getTaskId(task)
-          @taskList.append "<li id='#{tid}' class='task'>#{task}</li>"
+          @taskList.append "<div id='#{tid}' class='task'>#{task}</div>"
         @writeOutput "#{@tasks.length} tasks found"
 
       else
@@ -137,8 +137,8 @@ class GulpControlView extends View
 
     tid = @getTaskId(task)
 
-    @find('.tasks li.task.active').removeClass 'active'
-    @find(".tasks li.task##{tid}").addClass 'active running'
+    @find('.tasks > .task.active').removeClass 'active'
+    @find(".tasks > .task##{tid}").addClass 'active running'
 
     @process = new BufferedProcess({command, args, options, stdout, stderr, exit})
     return
@@ -162,7 +162,7 @@ class GulpControlView extends View
     return
 
   gulpExit: (code) ->
-    @find('.tasks li.task.active.running').removeClass 'running'
+    @find('.tasks > .task.active.running').removeClass 'running'
     @writeOutput "Exited with code #{code}", "#{if code then 'error' else ''}"
     @process = null
     return
