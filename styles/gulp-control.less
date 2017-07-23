@@ -29,30 +29,34 @@
   }
 
 
+  & > .clear,
   & > .tasks > .task {
       cursor: pointer;
       padding: 5px;
       border-radius: 4px;
-      list-style: none;
       text-align: center;
       text-transform: uppercase;
       background-color: rgba(0,0,0,.1);
 
-      &:not(:last-child) {
-        margin-right: 5px;
-      }
-
-      &.active {
-        background: @button-background-color;
-        color: @text-color-highlight;
-
-        &.running {
-          background: @button-background-color-selected;
-        }
-      }
-
       &:hover {
         color: @text-color-highlight;
+      }
+    }
+  }
+
+  & > .tasks > .task {
+
+
+    &:not(:last-child) {
+      margin-right: 5px;
+    }
+
+    &.active {
+      background: @button-background-color;
+      color: @text-color-highlight;
+
+      &.running {
+        background: @button-background-color-selected;
       }
     }
   }
@@ -81,17 +85,5 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    background: rgba(0, 0, 0, 0);
-    border: 1px solid @text-color;
-    border-radius: 5px;
-    z-index: 1000;
-    padding: 10px;
-
-    &:hover {
-      background-color: @text-color-highlight;
-      border: 1px solid @text-color-highlight;
-      color: @tool-panel-background-color;
-      cursor: pointer;
-    }
   }
 }
